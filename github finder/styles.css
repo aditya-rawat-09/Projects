@@ -1,0 +1,189 @@
+
+    * {
+      box-sizing: border-box;
+    }
+    
+   
+ ::-webkit-scrollbar{
+    display: none;
+  }
+
+    body, html {
+      margin: 0;
+      padding: 0;
+      height: 100vh;
+      width: 100vw;
+      font-family: 'Segoe UI', sans-serif;
+    }
+
+    .page {
+      background-color: black;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;      
+    }
+
+    .block {
+    
+      background-color: #FFFADC;
+      width: 750px;
+      border: 2px solid black;
+      border-radius: 1.3rem;
+      padding: 20px;
+      box-shadow: 0 0 10px #000;
+      max-height: 740px;
+      overflow-y: auto;
+     
+    }
+
+    h1 {
+      text-align: center;
+      font-family: Impact;
+      font-weight: 400;
+      color: #7A1CAC;
+    }
+
+    input {
+      width: 80%;
+      height: 50px;
+      border-radius: 1em;
+      padding: 10px;
+      font-size: 1rem;
+      text-align: center;
+      margin-right: 10px;
+      border: 2px solid blueviolet;
+       color: #261FB3;
+       font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    }
+
+   
+
+    button {
+      height: 55px;
+      width: 120px;
+      background-color: #0077ff;
+      color: white;
+      border-radius: 1em;
+      font-size: 1rem;
+      cursor: pointer;
+    }
+
+    #profile {
+      text-align: center;
+      margin-top: 20px;
+      background-color: #f5faff;
+      padding: 15px;
+      border-radius: 1rem;
+    }
+
+    #profile img {
+      width: 120px;
+      border-radius: 50%;
+      border: 3px solid #000;
+    }
+
+    #name {
+      color: blue;
+      font-size: 1.5em;
+      font-weight: bold;
+    }
+
+    #userTag {
+      font-weight:bolder;
+      color:cornflowerblue;
+    }
+
+    #followers {
+  color: blue;
+  font-weight: bold;
+}
+
+#following {
+  color:darkblue;
+  font-weight: bold;
+}
+
+    #bio {
+      margin: 10px 0;
+      color:#AA60C8;
+    }
+
+    .stats {
+      color: goldenrod;
+      font-weight: bold;
+      margin: 10px 0;
+    }
+
+
+    #repoList {
+  max-height: 250px;       
+  overflow-y: auto;        
+  padding-right: 10px;     
+  margin-top: 10px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  background-color: #f0f4ff;
+
+}
+
+#repoList::-webkit-scrollbar {
+  width: 6px;
+}
+
+#repoList::-webkit-scrollbar-thumb {
+  background-color: #888;
+  border-radius: 6px;
+} 
+
+    .repos {
+      list-style: none;
+      padding: 0;
+    }
+
+    .repos li {
+      background-color: #e0d2ff;
+      margin: 5px 0;
+      padding: 10px;
+      border-radius: 6px;
+      font-weight: bold;
+      overflow-y: auto;
+      word-wrap: break-word;
+      overflow-wrap: break-word;
+       max-width: 100%;
+      white-space: normal;
+       line-height: 1.5;
+    transition: background-color 0.3s ease;
+    }
+
+    .repos li:hover {
+  background-color: #d4c1ff;
+    }
+
+
+    .repos a {
+      color: darkblue;
+      text-decoration: none;
+    }
+
+    .repos small {
+      display: block;
+      color: #333;
+      font-size: 0.85em;
+    }
+   
+    .hidden {
+      display: none;
+    }
+
+    .error {
+      color: red;
+      font-weight: bold;
+      text-align: center;
+      margin-top: 10px;
+      font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif ;
+    }
+
+  h4{
+    color:midnightblue;
+  }
