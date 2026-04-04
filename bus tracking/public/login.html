@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login - Bus Tracking</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .login-container {
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(10px);
+      padding: 3rem;
+      border-radius: 20px;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+      width: 100%;
+      max-width: 420px;
+      animation: slideUp 0.5s ease;
+    }
+
+    @keyframes slideUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .logo {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+
+    .logo h1 {
+      font-size: 2.5rem;
+      background: linear-gradient(135deg, #667eea, #764ba2);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 0.5rem;
+    }
+
+    .logo p {
+      color: #666;
+      font-size: 0.95rem;
+    }
+
+    .form-group {
+      margin-bottom: 1.5rem;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 0.5rem;
+      color: #333;
+      font-weight: 600;
+      font-size: 0.9rem;
+    }
+
+    input {
+      width: 100%;
+      padding: 0.9rem 1rem;
+      border: 2px solid #e0e0e0;
+      border-radius: 10px;
+      font-size: 1rem;
+      transition: all 0.3s;
+      font-family: inherit;
+    }
+
+    input:focus {
+      outline: none;
+      border-color: #667eea;
+      box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.1);
+    }
+
+    button {
+      width: 100%;
+      padding: 1rem;
+      background: linear-gradient(135deg, #667eea, #764ba2);
+      color: white;
+      border: none;
+      border-radius: 10px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s;
+      margin-top: 1rem;
+    }
+
+    button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 25px rgba(102, 126, 234, 0.4);
+    }
+
+    button:active {
+      transform: translateY(0);
+    }
+
+    .error {
+      background: #fee;
+      color: #c33;
+      padding: 0.8rem;
+      border-radius: 8px;
+      margin-bottom: 1rem;
+      font-size: 0.9rem;
+      display: none;
+    }
+
+    .demo-info {
+      margin-top: 1.5rem;
+      padding: 1rem;
+      background: #f0f4ff;
+      border-radius: 10px;
+      font-size: 0.85rem;
+      color: #667eea;
+      text-align: center;
+    }
+
+    .demo-info strong {
+      display: block;
+      margin-bottom: 0.5rem;
+    }
+
+    .toggle-form {
+      margin-top: 1.5rem;
+      text-align: center;
+      color: #666;
+      font-size: 0.9rem;
+    }
+
+    .toggle-form a {
+      color: #667eea;
+      text-decoration: none;
+      font-weight: 600;
+      transition: color 0.3s;
+    }
+
+    .toggle-form a:hover {
+      color: #764ba2;
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <div class="login-container">
+    <div class="logo">
+      <h1>🚌</h1>
+      <h1>Bus Tracking</h1>
+      <p>Real-time location monitoring</p>
+    </div>
+
+    <div class="error" id="error"></div>
+
+    <form id="loginForm">
+      <div class="form-group">
+        <label for="username">Username</label>
+        <input type="text" id="username" placeholder="Enter username" required>
+      </div>
+
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input type="password" id="password" placeholder="Enter password" required>
+      </div>
+
+      <button type="submit">Login</button>
+    </form>
+
+    <div class="demo-info">
+      <strong>Demo Credentials:</strong>
+      Username: admin | Password: admin
+    </div>
+
+    <div class="toggle-form">
+      <p>Don't have an account? <a href="#" onclick="showRegister(); return false;">Register</a></p>
+    </div>
+  </div>
+
+  <div class="login-container" id="registerContainer" style="display: none;">
+    <div class="logo">
+      <h1>🚌</h1>
+      <h1>Create Account</h1>
+      <p>Join our tracking system</p>
+    </div>
+
+    <div class="error" id="registerError"></div>
+
+    <form id="registerForm">
+      <div class="form-group">
+        <label for="regUsername">Username</label>
+        <input type="text" id="regUsername" placeholder="Choose username" required>
+      </div>
+
+      <div class="form-group">
+        <label for="regPassword">Password</label>
+        <input type="password" id="regPassword" placeholder="Choose password" required>
+      </div>
+
+      <div class="form-group">
+        <label for="regConfirmPassword">Confirm Password</label>
+        <input type="password" id="regConfirmPassword" placeholder="Confirm password" required>
+      </div>
+
+      <button type="submit">Register</button>
+    </form>
+
+    <div class="toggle-form">
+      <p>Already have an account? <a href="#" onclick="showLogin(); return false;">Login</a></p>
+    </div>
+  </div>
+
+  <script>
+    function showRegister() {
+      document.getElementById('loginForm').parentElement.style.display = 'none';
+      document.getElementById('registerContainer').style.display = 'block';
+    }
+
+    function showLogin() {
+      document.getElementById('registerContainer').style.display = 'none';
+      document.getElementById('loginForm').parentElement.style.display = 'block';
+    }
+
+    document.getElementById('loginForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      
+      const username = document.getElementById('username').value;
+      const password = document.getElementById('password').value;
+      const error = document.getElementById('error');
+
+      try {
+        const response = await fetch('/api/login', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ username, password })
+        });
+
+        const data = await response.json();
+
+        if (data.success) {
+          localStorage.setItem('authToken', data.token);
+          window.location.href = '/dashboard';
+        } else {
+          error.textContent = data.message || 'Invalid credentials';
+          error.style.display = 'block';
+        }
+      } catch (err) {
+        error.textContent = 'Login failed. Please try again.';
+        error.style.display = 'block';
+      }
+    });
+
+    document.getElementById('registerForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      
+      const username = document.getElementById('regUsername').value;
+      const password = document.getElementById('regPassword').value;
+      const confirmPassword = document.getElementById('regConfirmPassword').value;
+      const error = document.getElementById('registerError');
+
+      if (password !== confirmPassword) {
+        error.textContent = 'Passwords do not match';
+        error.style.display = 'block';
+        return;
+      }
+
+      try {
+        const response = await fetch('/api/register', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ username, password })
+        });
+
+        const data = await response.json();
+
+        if (data.success) {
+          alert('Registration successful! Please login.');
+          showLogin();
+        } else {
+          error.textContent = data.message || 'Registration failed';
+          error.style.display = 'block';
+        }
+      } catch (err) {
+        error.textContent = 'Registration failed. Please try again.';
+        error.style.display = 'block';
+      }
+    });
+  </script>
+</body>
+</html>

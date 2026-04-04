@@ -1,0 +1,124 @@
+.questionnaire-wrapper {
+  min-height: 100vh;
+  background: #000;
+  padding: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.questionnaire-container {
+  max-width: 700px;
+  width: 100%;
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 20px;
+  padding: 3rem;
+  color: #000;
+}
+
+.back-btn {
+  background: #000;
+  color: #fff;
+  border: none;
+  padding: 0.7rem 1.5rem;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-bottom: 2rem;
+  font-weight: bold;
+  transition: all 0.3s;
+}
+
+.back-btn:hover {
+  background: #333;
+}
+
+.progress-bar {
+  width: 100%;
+  height: 8px;
+  background: #e0e0e0;
+  border-radius: 10px;
+  overflow: hidden;
+  margin-bottom: 1rem;
+}
+
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #667eea, #764ba2);
+  transition: width 0.3s ease;
+}
+
+.question-counter {
+  color: #667eea;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  font-size: 0.9rem;
+}
+
+.question-text {
+  font-size: 1.8rem;
+  color: #000;
+  margin-bottom: 2rem;
+  line-height: 1.4;
+}
+
+.answer-section {
+  margin-bottom: 2rem;
+}
+
+.answer-section textarea,
+.answer-section select,
+.answer-section input {
+  width: 100%;
+  padding: 1rem;
+  border: 2px solid #e0e0e0;
+  border-radius: 10px;
+  font-size: 1rem;
+  font-family: inherit;
+  transition: all 0.3s;
+}
+
+.answer-section textarea {
+  resize: vertical;
+  min-height: 120px;
+}
+
+.answer-section textarea:focus,
+.answer-section select:focus,
+.answer-section input:focus {
+  outline: none;
+  border-color: #667eea;
+  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+}
+
+.next-btn {
+  width: 100%;
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  color: #fff;
+  border: none;
+  padding: 1.2rem;
+  border-radius: 10px;
+  font-size: 1.1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.next-btn:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 20px rgba(102, 126, 234, 0.4);
+}
+
+.next-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+@media (max-width: 768px) {
+  .questionnaire-container {
+    padding: 2rem;
+  }
+  
+  .question-text {
+    font-size: 1.4rem;
+  }
+}

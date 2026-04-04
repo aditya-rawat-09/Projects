@@ -1,0 +1,158 @@
+.bot-3d-container {
+  width: 120px;
+  height: 120px;
+  cursor: pointer;
+  perspective: 1000px;
+}
+
+.bot-3d {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  transform-style: preserve-3d;
+  animation: botFloat 3s ease-in-out infinite;
+}
+
+@keyframes botFloat {
+  0%, 100% { transform: translateY(0) rotateY(0deg); }
+  50% { transform: translateY(-15px) rotateY(10deg); }
+}
+
+.bot-head {
+  width: 50px;
+  height: 50px;
+  background: linear-gradient(145deg, #667eea, #764ba2);
+  border-radius: 50%;
+  position: absolute;
+  top: 10px;
+  left: 35px;
+  transform: translateZ(30px);
+  box-shadow: 0 10px 30px rgba(102, 126, 234, 0.5);
+}
+
+.bot-antenna {
+  width: 3px;
+  height: 15px;
+  background: #667eea;
+  position: absolute;
+  top: -15px;
+  left: 50%;
+  transform: translateX(-50%);
+  border-radius: 3px;
+}
+
+.bot-antenna::after {
+  content: '';
+  width: 8px;
+  height: 8px;
+  background: #ff6b6b;
+  border-radius: 50%;
+  position: absolute;
+  top: -8px;
+  left: 50%;
+  transform: translateX(-50%);
+  animation: blink 1s infinite;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.3; }
+}
+
+.bot-eye {
+  width: 10px;
+  height: 10px;
+  background: #fff;
+  border-radius: 50%;
+  position: absolute;
+  top: 18px;
+  animation: eyeBlink 3s infinite;
+}
+
+.bot-eye.left { left: 12px; }
+.bot-eye.right { right: 12px; }
+
+.bot-eye::after {
+  content: '';
+  width: 5px;
+  height: 5px;
+  background: #000;
+  border-radius: 50%;
+  position: absolute;
+  top: 2px;
+  left: 2px;
+}
+
+@keyframes eyeBlink {
+  0%, 48%, 52%, 100% { transform: scaleY(1); }
+  50% { transform: scaleY(0.1); }
+}
+
+.bot-body-3d {
+  width: 60px;
+  height: 70px;
+  background: linear-gradient(145deg, #667eea, #764ba2);
+  border-radius: 15px;
+  position: absolute;
+  top: 50px;
+  left: 30px;
+  transform: translateZ(20px);
+  box-shadow: 0 10px 30px rgba(102, 126, 234, 0.5);
+}
+
+.bot-light {
+  width: 20px;
+  height: 20px;
+  background: radial-gradient(circle, #4ade80, #22c55e);
+  border-radius: 50%;
+  position: absolute;
+  top: 15px;
+  left: 50%;
+  transform: translateX(-50%);
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; transform: translateX(-50%) scale(1); }
+  50% { opacity: 0.6; transform: translateX(-50%) scale(1.1); }
+}
+
+.bot-arm {
+  width: 15px;
+  height: 40px;
+  background: linear-gradient(145deg, #667eea, #764ba2);
+  border-radius: 10px;
+  position: absolute;
+  top: 60px;
+  transform: translateZ(10px);
+  box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+}
+
+.bot-arm.left-arm {
+  left: 10px;
+  transform: translateZ(10px) rotate(-10deg);
+}
+
+.bot-arm.right-arm {
+  right: 10px;
+  transform-origin: top center;
+}
+
+.bot-arm.waving {
+  animation: wave 1.5s ease-in-out infinite;
+}
+
+@keyframes wave {
+  0%, 100% { transform: translateZ(10px) rotate(10deg); }
+  25% { transform: translateZ(10px) rotate(-30deg); }
+  75% { transform: translateZ(10px) rotate(40deg); }
+}
+
+.bot-3d-container:hover .bot-3d {
+  animation: botFloat 3s ease-in-out infinite, spin 4s linear infinite;
+}
+
+@keyframes spin {
+  from { transform: rotateY(0deg); }
+  to { transform: rotateY(360deg); }
+}

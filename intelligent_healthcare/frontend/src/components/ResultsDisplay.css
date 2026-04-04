@@ -1,0 +1,191 @@
+.results-wrapper {
+  min-height: 100vh;
+  background: #000;
+  padding: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.results-container {
+  max-width: 900px;
+  width: 100%;
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 20px;
+  padding: 2rem;
+  color: #000;
+}
+
+.back-btn {
+  background: #000;
+  color: #fff;
+  border: none;
+  padding: 0.7rem 1.5rem;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-bottom: 1rem;
+  font-weight: bold;
+  transition: all 0.3s;
+}
+
+.back-btn:hover {
+  background: #333;
+}
+
+.results-container h2 {
+  margin-bottom: 1.5rem;
+  color: #000;
+  text-align: center;
+}
+
+.results-content {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.consultation-info {
+  background: #f9f9f9;
+  padding: 1rem;
+  border-radius: 10px;
+  border: 1px solid #ddd;
+}
+
+.consultation-info p {
+  margin: 0.5rem 0;
+  font-size: 1rem;
+}
+
+.status-success {
+  color: #22c55e;
+  font-weight: bold;
+}
+
+.predictions-section h3 {
+  margin-bottom: 1rem;
+  color: #667eea;
+}
+
+.prediction-card {
+  background: #fff;
+  border: 2px solid #e0e0e0;
+  border-radius: 15px;
+  padding: 1.5rem;
+  margin-bottom: 1rem;
+  transition: all 0.3s;
+}
+
+.prediction-card:hover {
+  border-color: #667eea;
+  box-shadow: 0 4px 15px rgba(102, 126, 234, 0.2);
+}
+
+.prediction-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.prediction-header h4 {
+  color: #000;
+  font-size: 1.3rem;
+  margin: 0;
+}
+
+.confidence-badge {
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  color: #fff;
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  font-size: 0.9rem;
+  font-weight: bold;
+}
+
+.prediction-desc {
+  color: #666;
+  line-height: 1.6;
+  margin-bottom: 1rem;
+}
+
+.prediction-section {
+  margin: 1.5rem 0;
+}
+
+.prediction-section h5 {
+  color: #667eea;
+  font-size: 1.1rem;
+  margin-bottom: 0.8rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.prediction-section p {
+  color: #555;
+  line-height: 1.6;
+}
+
+.prediction-section ul {
+  margin: 0.5rem 0 0 1.5rem;
+  color: #333;
+}
+
+.prediction-section li {
+  margin: 0.5rem 0;
+  line-height: 1.5;
+}
+
+.doctor-advice {
+  background: #fff3cd;
+  padding: 1rem;
+  border-radius: 10px;
+  border-left: 4px solid #ffc107;
+}
+
+.doctor-advice h5 {
+  color: #856404;
+}
+
+.doctor-advice p {
+  color: #856404;
+}
+
+.info-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+
+.info-tag {
+  background: #e0e0e0;
+  padding: 0.4rem 0.8rem;
+  border-radius: 15px;
+  font-size: 0.85rem;
+  font-weight: 500;
+}
+
+.info-tag.severity {
+  background: #ffebee;
+  color: #c62828;
+}
+
+.info-tag.contagious {
+  background: #fff3e0;
+  color: #e65100;
+}
+
+.disclaimer {
+  background: #fff3cd;
+  border: 1px solid #ffc107;
+  border-radius: 10px;
+  padding: 1rem;
+  color: #856404;
+  text-align: center;
+}
+
+.disclaimer strong {
+  display: block;
+  margin-bottom: 0.5rem;
+}
