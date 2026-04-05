@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bus Tracking System</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+</head>
+<body>
+  <script>
+    if (!localStorage.getItem('authToken')) {
+      window.location.href = '/';
+    }
+  </script>
+  <div class="container">
+    <header>
+      <h1>🚌 Live Bus Tracking</h1>
+      <div class="header-stats">
+        <div class="stat-item">
+          <span>🚍 Active Buses:</span>
+          <span class="stat-value" id="busCount">0</span>
+        </div>
+        <div class="stat-item">
+          <span>🔄 Last Update:</span>
+          <span class="stat-value" id="lastUpdate">--</span>
+        </div>
+        <button class="logout-btn" onclick="logout()">Logout</button>
+      </div>
+    </header>
+    
+    <div class="content">
+      <aside class="sidebar">
+        <h2>🚏 Active Buses</h2>
+        <div id="busList"></div>
+      </aside>
+      
+      <main>
+        <div id="map"></div>
+      </main>
+    </div>
+  </div>
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

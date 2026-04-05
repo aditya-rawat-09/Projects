@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+    <title>Document</title>
+</head>
+
+<body>
+
+
+    <div class="page">
+        <div class="block">
+
+            <h1>🔍Github User and Repositories Finder </h1>
+            <input type="text" class="userinp" placeholder="Enter Github Username">
+            <button class="searchbtn">Search</button>
+            <div id="errorMsg" class="error hidden"> User Not Found ❌ ... Try Again</div>
+
+
+            <div id="profile" class="hidden">
+                <img id="avatar" src="" alt="User Avatar" />
+                <h3 id="name"></h3>
+                <p id="userTag"></p>
+                <p id="bio"></p>
+                <p>
+                    <strong>Followers :</strong> <span id="followers"></span> |
+                    <strong>Following :</strong> <span id="following"></span>
+                </p>
+
+            </div>
+
+            <div id="repoSection" class="hidden">
+                <h4>Repositories:</h4>
+                <ul id="repoList" class="repos"></ul>
+            </div>
+        </div>
+
+    </div>
+
+
+    <script src="script.js">
+
+
+    </script>
+</body>
+
+</html>

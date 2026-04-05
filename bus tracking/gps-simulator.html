@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>GPS Simulator</title>
+  <style>
+    body { font-family: Arial; padding: 20px; background: #f5f5f5; }
+    .simulator { background: white; padding: 20px; border-radius: 8px; max-width: 400px; }
+    button { background: #667eea; color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer; margin: 5px; }
+    button:hover { background: #5568d3; }
+    .status { margin-top: 10px; padding: 10px; background: #e8f5e9; border-radius: 5px; }
+  </style>
+</head>
+<body>
+  <div class="simulator">
+    <h2>🛰️ Real GPS Simulator</h2>
+    <p>This uses your device's actual GPS location</p>
+    <button onclick="startTracking('B101')">Track as Bus B101</button>
+    <button onclick="startTracking('B102')">Track as Bus B102</button>
+    <button onclick="startTracking('B103')">Track as Bus B103</button>
+    <button onclick="stopTracking()">Stop Tracking</button>
+    <div class="status" id="status">Click a button to start</div>
+  </div>
+
+  <script>
+    let watchId = null;
+    let currentBus = null;
+
+    function startTracking(busId) {
+      if (!navigator.geolocation) {
+        document.getElementById('status').innerHTML = '❌ GPS not supported';
+        return;
+      }
+
+      currentBus = busId;
+      document.getElementById('status').innerHTML = `📍 Tracking ${busId}...`;
+
+      watchId = navigator.geolocation.watchPosition(
+        (position) => {
+          const data = {
+            busId: currentBus,
+            lat: position.coords.latitude,
+            lng: position.coords.longitude,
+            speed: position.coords.speed || 0
+          };
+
+          fetch('http://localhost:3000/api/update-location', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(data)
+          })
+          .then(() => {
+            document.getElementById('status').innerHTML = 
+              `✅ ${currentBus} updated<br>Lat: ${data.lat.toFixed(6)}<br>Lng: ${data.lng.toFixed(6)}`;
+          })
+          .catch(() => {
+            document.getElementById('status').innerHTML = '❌ Server error';
+          });
+        },
+        (error) => {
+          document.getElementById('status').innerHTML = `❌ GPS Error: ${error.message}`;
+        },
+        { enableHighAccuracy: true, maximumAge: 0 }
+      );
+    }
+
+    function stopTracking() {
+      if (watchId) {
+        navigator.geolocation.clearWatch(watchId);
+        watchId = null;
+        currentBus = null;
+        document.getElementById('status').innerHTML = '⏸️ Tracking stopped';
+      }
+    }
+  </script>
+</body>
+</html>
