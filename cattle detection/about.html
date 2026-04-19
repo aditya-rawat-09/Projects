@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About - Cow & Buffalo Breed Predictor</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+ 
+  <nav class="navbar">
+    <div class="nav-container">
+      <div class="logo" data-en="🐄 Breed Predictor" data-hi="🐄 नस्ल भविष्यवक्ता">🐄 Breed Predictor</div>
+      
+     
+      <div class="mobile-menu-toggle" id="mobileMenuToggle">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+      
+    
+      <div class="nav-menu" id="navMenu">
+        <a href="index.html" class="nav-link" data-en="🏠 Home" data-hi="🏠 मुख्य पृष्ठ">🏠 Home</a>
+        <a href="about.html" class="nav-link active" data-en="ℹ️ About" data-hi="ℹ️ परिचय">ℹ️ About</a>
+        <a href="about.html" class="nav-link" data-en="📞 Contact" data-hi="📞 संपर्क">📞 Contact</a>
+        <button id="langToggle" class="lang-btn">🌐 हिंदी</button>
+      </div>
+    </div>
+  </nav>
+
+
+  <div id="about" class="container" style="margin-top:80px;">
+    <h1 data-en="📖 About" data-hi="📖 परिचय">📖 About</h1>
+    <p data-en="This project uses a Machine Learning model trained on cow and buffalo images to predict the breed from a photo. Powered by TensorFlow.js and Teachable Machine. 
+      Cattle are bovine animals used for meat, milk, and labor, while buffaloes are larger and mainly used for meat and milk. Despite their differences, both are essential for food and livelihood worldwide."
+       data-hi="यह प्रोजेक्ट गाय और भैंस की तस्वीरों पर प्रशिक्षित मशीन लर्निंग मॉडल का उपयोग करता है ताकि नस्ल का अनुमान लगाया जा सके। यह TensorFlow.js और Teachable Machine द्वारा संचालित है।
+       गायें मांस, दूध और श्रम के लिए उपयोग होती हैं, जबकि भैंसें बड़ी होती हैं और मुख्य रूप से मांस और दूध के लिए उपयोग होती हैं। भिन्नताओं के बावजूद, दोनों ही भोजन और आजीविका के लिए आवश्यक हैं।">
+       This project uses a Machine Learning model trained on cow and buffalo images to predict the breed from a photo. Powered by TensorFlow.js and Teachable Machine. 
+      Cattle are bovine animals used for meat, milk, and labor, while buffaloes are larger and mainly used for meat and milk. Despite their differences, both are essential for food and livelihood worldwide.
+    </p>
+  </div>
+
+ 
+  <div id="contact" class="container" style="margin-top:40px;">
+    <h1 data-en="📬 Contact" data-hi="📬 संपर्क">📬 Contact</h1>
+    <p data-en="If you’d like to know more or collaborate, feel free to reach out:" data-hi="यदि आप और जानना चाहते हैं या सहयोग करना चाहते हैं, तो निःसंकोच संपर्क करें:">If you’d like to know more or collaborate, feel free to reach out:</p>
+    <ul style="list-style:none; padding:0; text-align:left; max-width:400px; margin:auto;">
+      <li>📧 <span data-en="Email" data-hi="ईमेल">Email</span> : rauj231156cst@sdbc.ac.in</li>
+      <li>📱 <span data-en="Phone" data-hi="फ़ोन">Phone</span> : +91 98765 43210</li>
+      <li>🌐 <span data-en="Website" data-hi="वेबसाइट">Website</span> : www.example.com</li>
+    </ul>
+  </div>
+
+  <script src="lang.js"></script>
+  <script>
+  
+    document.getElementById("mobileMenuToggle").addEventListener("click", function() {
+        const navMenu = document.getElementById("navMenu");
+        const toggle = document.getElementById("mobileMenuToggle");
+        
+        navMenu.classList.toggle("active");
+        toggle.classList.toggle("active");
+    });
+
+  
+    document.querySelectorAll(".nav-link").forEach(link => {
+        link.addEventListener("click", () => {
+            const navMenu = document.getElementById("navMenu");
+            const toggle = document.getElementById("mobileMenuToggle");
+            
+            navMenu.classList.remove("active");
+            toggle.classList.remove("active");
+        });
+    });
+  </script>
+</body>
+</html>

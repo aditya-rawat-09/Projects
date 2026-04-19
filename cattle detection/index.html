@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cattle Breed Predictor - AI-Powered Classification</title>
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- Navigation Bar -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <div class="logo" data-en="🐄 Cattle Breed Predictor" data-hi="🐄 पशु नस्ल भविष्यवक्ता">🐄 Cattle Breed Predictor</div>
+      
+      <!-- Mobile Menu Toggle -->
+      <div class="mobile-menu-toggle" id="mobileMenuToggle">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+      
+      <!-- Navigation Menu -->
+      <div class="nav-menu" id="navMenu">
+        <a href="index.html" class="nav-link active" data-en="Home" data-hi="मुख्य पृष्ठ">Home</a>
+        <a href="#breeds" class="nav-link" data-en="Breeds" data-hi="नस्लें">Breeds</a>
+        <a href="#about" class="nav-link" data-en="About" data-hi="परिचय">About</a>
+        <a href="#contact" class="nav-link" data-en="Contact" data-hi="संपर्क">Contact</a>
+        <button id="langToggle" class="lang-btn">हिंदी</button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="hero-content">
+      <h1 data-en="AI-Powered Cattle Breed Classification" data-hi="एआई-संचालित पशु नस्ल वर्गीकरण">AI-Powered Cattle Breed Classification</h1>
+      <p data-en="Advanced machine learning technology for accurate identification of cow and buffalo breeds" data-hi="गाय और भैंस की नस्लों की सटीक पहचान के लिए उन्नत मशीन लर्निंग तकनीक">Advanced machine learning technology for accurate identification of cow and buffalo breeds</p>
+    </div>
+  </section>
+
+  <!-- Main Application -->
+  <div class="main-container">
+    <div class="app-card">
+      <div class="card-header">
+        <h2 data-en="Upload Image for Analysis" data-hi="विश्लेषण के लिए चित्र अपलोड करें">Upload Image for Analysis</h2>
+        <p data-en="Select an image of a cow or buffalo to identify its breed" data-hi="नस्ल की पहचान के लिए गाय या भैंस की तस्वीर चुनें">Select an image of a cow or buffalo to identify its breed</p>
+      </div>
+
+      <!-- Loading Indicator -->
+      <div id="loadingIndicator" class="loading-indicator" style="display:none;">
+        <div class="spinner"></div>
+        <p data-en="Processing image..." data-hi="चित्र प्रसंस्करण...">Processing image...</p>
+      </div>
+
+      <div class="upload-section">
+        <div class="upload-area" id="uploadArea">
+          <input type="file" id="imageUpload" accept="image/*">
+          <div class="upload-content">
+            <div class="upload-icon">📁</div>
+            <h3 data-en="Drop image here or click to browse" data-hi="यहाँ चित्र छोड़ें या ब्राउज़ करने के लिए क्लिक करें">Drop image here or click to browse</h3>
+            <p data-en="Supports JPG, PNG, WEBP formats" data-hi="JPG, PNG, WEBP प्रारूप समर्थित">Supports JPG, PNG, WEBP formats</p>
+          </div>
+        </div>
+        
+        <div class="upload-buttons">
+          <label for="imageUpload" class="btn btn-primary" data-en="Choose File" data-hi="फ़ाइल चुनें">Choose File</label>
+          <button id="cameraBtn" class="btn btn-secondary" data-en="Use Camera" data-hi="कैमरा उपयोग करें">Use Camera</button>
+        </div>
+      </div>
+
+      <div class="preview-section" id="previewSection" style="display:none;">
+        <div class="preview-container">
+          <img id="preview" alt="Preview Image">
+          <div class="analyze-button-container">
+            <button id="startBtn" class="btn btn-success" data-en="Analyze Image" data-hi="चित्र का विश्लेषण करें">Analyze Image</button>
+          </div>
+        </div>
+      </div>
+
+      <div id="result" class="results-section"></div>
+    </div>
+  </div>
+
+  <!-- Camera Modal -->
+  <div id="cameraModal" class="modal" style="display:none;">
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <video id="video" autoplay></video>
+      <button id="captureBtn" class="btn btn-primary" data-en="Capture" data-hi="कैप्चर करें">Capture</button>
+      <canvas id="canvas" style="display:none;"></canvas>
+    </div>
+  </div>
+
+  <!-- Breed Info Modal -->
+  <div id="breedModal" class="modal" style="display:none;">
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <h2 id="breedName"></h2>
+      <div id="breedInfo"></div>
+    </div>
+  </div>
+
+  <!-- Breeds Database Section -->
+  <section id="breeds" class="breeds-section">
+    <div class="section-container">
+      <div class="section-header">
+        <h2 data-en="Cattle Breeds Database" data-hi="पशु नस्ल डेटाबेस">Cattle Breeds Database</h2>
+        <p data-en="Explore our comprehensive collection of cattle breeds with detailed information" data-hi="विस्तृत जानकारी के साथ पशु नस्लों के हमारे व्यापक संग्रह का अन्वेषण करें">Explore our comprehensive collection of cattle breeds with detailed information</p>
+      </div>
+      
+      <div class="breed-controls">
+        <div class="breed-filter">
+          <button class="filter-btn active" data-filter="all" data-en="All Breeds" data-hi="सभी नस्लें">
+            <span class="filter-icon">🐄</span>
+            <span class="filter-text">All Breeds</span>
+            <span class="filter-count" id="allCount">0</span>
+          </button>
+          <button class="filter-btn" data-filter="cow" data-en="Cows" data-hi="गायें">
+            <span class="filter-icon">🐄</span>
+            <span class="filter-text">Cows</span>
+            <span class="filter-count" id="cowCount">0</span>
+          </button>
+          <button class="filter-btn" data-filter="buffalo" data-en="Buffaloes" data-hi="भैंसें">
+            <span class="filter-icon">🐃</span>
+            <span class="filter-text">Buffaloes</span>
+            <span class="filter-count" id="buffaloCount">0</span>
+          </button>
+        </div>
+        
+        <div class="breed-search">
+          <input type="text" id="breedSearch" placeholder="Search breeds..." data-en-placeholder="Search breeds..." data-hi-placeholder="नस्लों की खोज करें...">
+          <span class="search-icon">🔍</span>
+        </div>
+      </div>
+      
+      <div class="breeds-stats">
+        <div class="stat-item">
+          <span class="stat-number" id="totalBreeds">0</span>
+          <span class="stat-label" data-en="Total Breeds" data-hi="कुल नस्लें">Total Breeds</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-number" id="avgMilk">0</span>
+          <span class="stat-label" data-en="Avg Milk Yield" data-hi="औसत दूध उत्पादन">Avg Milk Yield</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-number" id="countries">0</span>
+          <span class="stat-label" data-en="Countries" data-hi="देश">Countries</span>
+        </div>
+      </div>
+      
+      <div id="breedsGrid" class="breeds-grid"></div>
+      
+      <div class="breeds-pagination" id="breedsPagination" style="display:none;">
+        <button class="pagination-btn" id="prevPage">← Previous</button>
+        <span class="pagination-info" id="pageInfo">Page 1 of 1</span>
+        <button class="pagination-btn" id="nextPage">Next →</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section id="about" class="about-section">
+    <div class="section-container">
+      <div class="section-header">
+        <h2 data-en="About Our Technology" data-hi="हमारी तकनीक के बारे में">About Our Technology</h2>
+        <p data-en="Learn how our AI-powered system works" data-hi="जानिए कि हमारा एआई-संचालित सिस्टम कैसे काम करता है">Learn how our AI-powered system works</p>
+      </div>
+      
+      <div class="about-grid">
+        <div class="about-card">
+          <div class="about-icon">🤖</div>
+          <h3 data-en="Machine Learning" data-hi="मशीन लर्निंग">Machine Learning</h3>
+          <p data-en="Advanced neural networks trained on thousands of cattle images for accurate breed identification" data-hi="सटीक नस्ल पहचान के लिए हजारों पशु चित्रों पर प्रशिक्षित उन्नत न्यूरल नेटवर्क">Advanced neural networks trained on thousands of cattle images for accurate breed identification</p>
+        </div>
+        
+        <div class="about-card">
+          <div class="about-icon">📊</div>
+          <h3 data-en="High Accuracy" data-hi="उच्च सटीकता">High Accuracy</h3>
+          <p data-en="Our model achieves over 90% accuracy in identifying different cattle breeds with confidence scores" data-hi="हमारा मॉडल विश्वास स्कोर के साथ विभिन्न पशु नस्लों की पहचान में 90% से अधिक सटीकता प्राप्त करता है">Our model achieves over 90% accuracy in identifying different cattle breeds with confidence scores</p>
+        </div>
+        
+        <div class="about-card">
+          <div class="about-icon">🚀</div>
+          <h3 data-en="Fast Processing" data-hi="तेज़ प्रसंस्करण">Fast Processing</h3>
+          <p data-en="Real-time analysis with results delivered in seconds using optimized TensorFlow.js models" data-hi="ऑप्टिमाइज़्ड TensorFlow.js मॉडल का उपयोग करके सेकंडों में परिणाम देने वाला रियल-टाइम विश्लेषण">Real-time analysis with results delivered in seconds using optimized TensorFlow.js models</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact" class="contact-section">
+    <div class="section-container">
+      <div class="section-header">
+        <h2 data-en="Get In Touch" data-hi="संपर्क करें">Get In Touch</h2>
+        <p data-en="Have questions or feedback? We'd love to hear from you" data-hi="कोई प्रश्न या फीडबैक है? हम आपसे सुनना चाहेंगे">Have questions or feedback? We'd love to hear from you</p>
+      </div>
+      
+      <div class="contact-grid">
+        <div class="contact-info">
+          <div class="contact-item">
+            <div class="contact-icon">📧</div>
+            <h3 data-en="Email" data-hi="ईमेल">Email</h3>
+            <p>bugs@cattlepredictor.com</p>
+          </div>
+          
+          <div class="contact-item">
+            <div class="contact-icon">📞</div>
+            <h3 data-en="Phone" data-hi="फोन">Phone</h3>
+            <p>+91 90395 07514</p>
+          </div>
+          
+          <div class="contact-item">
+            <div class="contact-icon">📍</div>
+            <h3 data-en="Address" data-hi="पता">Address</h3>
+            <p data-en="Agricultural Research Center, Indore , India" data-hi="कृषि अनुसंधान केंद्र, इन्दौर, भारत">Agricultural Research Center, New Delhi, India</p>
+          </div>
+        </div>
+        
+        <div class="contact-form">
+          <form>
+            <div class="form-group">
+              <input type="text" placeholder="Your Name" data-en-placeholder="Your Name" data-hi-placeholder="आपका नाम" required>
+            </div>
+            <div class="form-group">
+              <input type="email" placeholder="Your Email" data-en-placeholder="Your Email" data-hi-placeholder="आपका ईमेल" required>
+            </div>
+            <div class="form-group">
+              <textarea placeholder="Your Message" data-en-placeholder="Your Message" data-hi-placeholder="आपका संदेश" rows="5" required></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary" data-en="Send Message" data-hi="संदेश भेजें">Send Message</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TensorFlow.js -->
+  <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@3.9.0/dist/tf.min.js"></script>
+  <!-- Teachable Machine -->
+  <script src="https://cdn.jsdelivr.net/npm/@teachablemachine/image@0.8.4/dist/teachablemachine-image.min.js"></script>
+  <!-- App Code -->
+  <script src="app.js"></script>
+  <script src="lang.js"></script>
+</body>
+</html>
+
+
