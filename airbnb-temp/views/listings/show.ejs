@@ -1,0 +1,55 @@
+<% layout('layouts/boilerplate') %>
+
+<div class="show-container">
+  <img src="<%= listing.image.url %>" alt="<%= listing.title %>" />
+  <div class="show-details">
+    <h2><%= listing.title %></h2>
+    <p class="meta">📍 <%= listing.location %>, <%= listing.country %></p>
+    <p class="description"><%= listing.description %></p>
+    <p class="price-tag">₹<%= listing.price ? listing.price.toLocaleString("en-IN") : "N/A" %> / night</p>
+    <div class="show-actions">
+      <a href="/listings/<%= listing._id %>/edit" class="btn-secondary">Edit</a>
+      <form method="POST" action="/listings/<%= listing._id %>?_method=DELETE">
+        <button class="btn-danger">Delete</button>
+      </form>
+      <a href="/listings" class="btn-secondary">← Back</a>
+    </div>
+  </div>
+</div>
+
+<!-- Feedback Form -->
+<div class="review-section">
+  <h3>Leave a Review</h3>
+  <form method="POST" action="/listings/<%= listing._id %>/reviews" class="review-form">
+    <div class="form-group">
+      <label>Rating (1–5)</label>
+      <input type="number" name="review[rating]" min="1" max="5" placeholder="e.g. 4" required />
+    </div>
+    <div class="form-group">
+      <label>Comment</label>
+      <textarea name="review[comment]" placeholder="Share your experience..." required></textarea>
+    </div>
+    <button class="btn-primary">Submit Review</button>
+  </form>
+
+  <!-- Reviews List -->
+  <% if (listing.reviews && listing.reviews.length > 0) { %>
+    <h3 class="reviews-heading">Reviews (<%= listing.reviews.length %>)</h3>
+    <div class="reviews-list">
+      <% for (let review of listing.reviews) { %>
+        <div class="review-card">
+          <div class="review-header">
+            <span class="review-rating">⭐ <%= review.rating %>/5</span>
+            <span class="review-date"><%= new Date(review.createdAt).toLocaleDateString("en-IN") %></span>
+          </div>
+          <p class="review-comment"><%= review.comment %></p>
+          <form method="POST" action="/listings/<%= listing._id %>/reviews/<%= review._id %>?_method=DELETE">
+            <button class="btn-danger btn-sm">Delete</button>
+          </form>
+        </div>
+      <% } %>
+    </div>
+  <% } else { %>
+    <p class="no-reviews">No reviews yet. Be the first to review!</p>
+  <% } %>
+</div>
