@@ -17,9 +17,8 @@ const listingSchema = new mongoose.Schema({
     reviews: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Review' }]
 });
 
-// Auto-delete all reviews when a listing is deleted
 listingSchema.post('findOneAndDelete', async (listing) => {
-    if (listing && listing.reviews.length) {
+    if (listing?.reviews.length) {
         await Review.deleteMany({ _id: { $in: listing.reviews } });
     }
 });

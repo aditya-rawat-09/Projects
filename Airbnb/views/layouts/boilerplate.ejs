@@ -9,12 +9,6 @@
 <body>
   <%- include('../includes/header') %>
   <main class="content">
-    <% if (success && success.length) { %>
-      <div class="flash flash-success"><%= success %></div>
-    <% } %>
-    <% if (error && error.length) { %>
-      <div class="flash flash-error"><%= error %></div>
-    <% } %>
     <%- body %>
   </main>
   <%- include('../includes/footer') %>
